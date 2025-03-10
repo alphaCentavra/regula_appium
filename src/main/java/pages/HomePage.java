@@ -3,14 +3,17 @@ package pages;
 import base.BasePage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends BasePage {
+    // использовать логирование
+    private static final Logger logger = LogManager.getLogger();
 
     protected AppiumDriver driver;
-    private  int waitTimeInSeconds = 30; // можно убрать в пропертис
 
     @AndroidFindBy(className = "android.widget.TextView")
     private WebElement textView;
@@ -24,12 +27,12 @@ public class HomePage extends BasePage {
     }
 
     public HomePage waitPageContentVisible() {
-        waitForElementVisible(pageContent, waitTimeInSeconds);
+        waitForElementVisible(pageContent);
         return this;
     }
 
     public String getPageContent() {
-        waitForElementVisible(textView, waitTimeInSeconds);
+        waitForElementVisible(textView);
         return textView.getText();
     }
 }

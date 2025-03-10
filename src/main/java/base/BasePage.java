@@ -2,16 +2,17 @@ package base;
 
 ;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static data.TestData.waitTime;
+
 public class BasePage {
     protected AppiumDriver driver;
-    private final int waitTimeInSeconds = 10;
+    private final int waitTimeInSeconds = Integer.parseInt(waitTime.getValue());
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
@@ -19,6 +20,12 @@ public class BasePage {
 
     protected void click(WebElement element) {
         element.click();
+    }
+
+    protected void click(WebElement element, int count) {
+        for (int i=0; i<count; i++) {
+            element.click();
+        }
     }
 
     protected void sendKeys(WebElement element, String text) {
