@@ -12,12 +12,12 @@ import static data.TestData.waitTime;
 public class AppiumDriverUtil {
     private static AppiumDriver driver = null;
 
-    public static AppiumDriver getDriver(URL remoteUrl, DesiredCapabilities capabilities) {
-        if (driver == null) {
+    public static AppiumDriver getDriver(String platform, URL remoteUrl, DesiredCapabilities capabilities) throws Exception {
+//        if (driver == null) {
              int waitInSeconds = Integer.parseInt(waitTime.getValue());
-             driver = new AndroidDriver(remoteUrl, capabilities);
+            driver = DriverFactory.createDriver(platform, capabilities, remoteUrl);
              driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(waitInSeconds));
-         }
+//         }
         return driver;
     }
 }

@@ -1,74 +1,27 @@
 package tests;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import utils.InterceptedMessages;
-import utils.MITMProxy;
-
-import java.util.List;
 
 import static data.TestData.*;
-import static data.TestData.validLogin;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class LoginTest extends BaseTest {
 
-    // добавить аллюр, прикрутить запуск из .xml файла
-    @DataProvider(name = "loginValidValues") // разбить этот кейс на два (валидные/невалидные значения, для невалидных проверять и ввод и вставку текста, чтобы проверить на появление и InvalidValue и ExceptValue.)
-    protected Object[][] loginValidValues() {
-        return new Object[][]{
-                {""}, //сюда вводим только валидные символы (латинские буквы A..Z, a..z, символы [ . , / ' _ -], пробел) длиной до 50 символов (49)
-                {""}, //сюда вводим только валидные символы, длиной 50 символов
-                {""}, //сюда вводим и валидные и невалидные символы, валидных должно быть меньше 50-ти (49)
-        };
-    }
+/*
+Подробное описание дефектов находится в файле resources -> AppDefects.docx
+Список тест кейсов находится в файле resources -> TestCases.docx
+*/
 
-    @DataProvider(name = "loginInvalidValues") // разбить этот кейс на два (валидные/невалидные значения, для невалидных проверять и ввод и вставку текста, чтобы проверить на появление и InvalidValue и ExceptValue.)
-    protected Object[][] loginInvalidValues() {
-        return new Object[][]{
-                {""}, //сюда вводим только валидные символы, длиной больше 50
-                {""}, //сюда вводим и валидные и невалидные символы, валидных должно быть больше 50-ти (51)
-                {""}, //сюда вводим только невалидные символы любой длины
-        }; // еще можно вводить пустую строку и строку из только невалидных символов любой длины
-    }
-
-    @Test // Это негативный тест. Проверяем сначала ввод, потом вставку текста. Используем регулярку, чтобы получить то сообщение, в котором обрезаются невалидные символы.
-    public void testValidationsForLoginField() {
-
-    }
-
-    @Test // Это негативный тест. Проверяем сначала ввод, потом вставку текста. Используем регулярку, чтобы получить то сообщение, в котором обрезаются невалидные символы.
-    public void testValidationsForPasswordField() {
-
-    }
-
-    @Test // Проверяем, что пароль может быть как скрыт, так и отображен, позитивная проверка
-    public void testPasswordCouldBeHiddenAndShown() { // если получится, можно здесь запилить проверку скриншотов
-        // тестовые данные
-        String passwordFieldText = validPassword.getValue();
-        String trueValue = yes.getValue();
-        String falseValue = no.getValue();
-
-        // ШАГ 1 - вводим текст в поле для ввода пароля
-        loginPage
-                .waitPageTitleDisplayed()
-                .enterPassword(passwordFieldText);
-        //проверить скриншот, пароль не показывается и что иконка checked т.е. "глазик" закрыт
-        assertEquals(loginPage.getPasswordFieldAttribute(), trueValue, "Поле 'Пароль' не предназначено для ввода пароля");
-        assertEquals(loginPage.getShowPasswordIconCheckedState(), trueValue, "По умолчанию иконка должна отображаться в перечеркнутом виде");
-        loginPage
-                .clickShowPasswordIcon(1);
-        //проверить скриншот, что пароль показывается и что иконка не checked т.е. "глазик" открыт
-        assertEquals(loginPage.getShowPasswordIconCheckedState(), falseValue, "При одиночном клике иконка должна менять свое состояние на противоположное");
-        loginPage
-                .clickShowPasswordIcon(2);
-        //проверить скриншот, что пароль по-прежнему показывается и что иконка все еще не checked
-        assertEquals(loginPage.getShowPasswordIconCheckedState(), falseValue, "При двойном клике иконка не должна менять свое состояние");
-    }
+public class LoginPositiveTest extends BaseTest {
 
     @Test
+    @AllureId("1")
+    @Description("Проверяем, что основные элементы страницы отображены на странице и имеют необходимые характеристики")
+    @Severity(SeverityLevel.CRITICAL)
+    @Issue("Дефект №3 - Кнопка входа имеет неверное название")
     public void testUserMainLoginPageElements() {
         // тестовые данные
         String actualLoginPageTitle = "";
@@ -106,6 +59,11 @@ public class LoginTest extends BaseTest {
     }
 
     @Test //тест дописан до попытки логина с невалидным логином и паролем
+    @AllureId("2")
+    @Description("Проверяем, что основные элементы страницы отображены на странице и имеют необходимые характеристики")
+    @Severity(SeverityLevel.CRITICAL)
+    @Issue("Дефект №1 - Не отображается валидационное сообщение поля 'Логин'")
+    @Issue("Дефект №2 - Не отображается валидационное сообщение поля 'Пароль'")
     public void testUserLogin() {
         // тестовые данные
         String validLoginValue = validLogin.getValue();
@@ -140,14 +98,31 @@ public class LoginTest extends BaseTest {
                 "Текст '" + actualPageContent + "' на домашней странице не равен " + expectedHomePageContent);
     }
 
+    @Test
+    @AllureId("3")
+    @Description("Проверяем, что пароль может быть как скрыт, так и отображен")
+    @Severity(SeverityLevel.CRITICAL)
+    @Issue("Дефект №4 - Иконка показа.скрытия пароля имеет неверную анимацию")
+    public void testPasswordCouldBeHiddenAndShown() { // если получится, можно здесь запилить проверку скриншотов
+        // тестовые данные
+        String passwordFieldText = validPassword.getValue();
+        String trueValue = yes.getValue();
+        String falseValue = no.getValue();
 
-    // !!! это надо перенести в другой сценарий
-//        String usernameValidationMessage = loginPage.getUsernameValidationMessage();;
-//        assertEquals(usernameValidationMessage, "InvalidValue");
-    // тут должна быть проверка валидационного сообщения поля Пароль
-//        String passwordValidationMessage = loginPage.getPasswordValidationMessage();
-//        assertEquals(passwordValidationMessage, "ExceptValue");
-    //проверяем, что длина пароля была обрезана до допустимой длины
-//        int passwordLength = loginPage.getPasswordFieldText().length();
-//        assertEquals(passwordLength, inputFieldMaxLength, "Пароль не был обрезан при вставке до допустимой длины");
+        // ШАГ 1 - вводим текст в поле для ввода пароля
+        loginPage
+                .waitPageTitleDisplayed()
+                .enterPassword(passwordFieldText);
+        //проверить скриншот, пароль не показывается и что иконка checked т.е. "глазик" закрыт
+        assertEquals(loginPage.getPasswordFieldAttribute(), trueValue, "Поле 'Пароль' не предназначено для ввода пароля");
+        assertEquals(loginPage.getShowPasswordIconCheckedState(), trueValue, "По умолчанию иконка должна отображаться в перечеркнутом виде");
+        loginPage
+                .clickShowPasswordIcon(1);
+        //проверить скриншот, что пароль показывается и что иконка не checked т.е. "глазик" открыт
+        assertEquals(loginPage.getShowPasswordIconCheckedState(), falseValue, "При одиночном клике иконка должна менять свое состояние на противоположное");
+        loginPage
+                .clickShowPasswordIcon(2);
+        //проверить скриншот, что пароль по-прежнему показывается и что иконка все еще не checked
+        assertEquals(loginPage.getShowPasswordIconCheckedState(), falseValue, "При двойном клике иконка не должна менять свое состояние");
+    }
 }

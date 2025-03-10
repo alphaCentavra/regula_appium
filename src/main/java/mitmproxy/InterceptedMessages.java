@@ -1,4 +1,4 @@
-package utils;
+package mitmproxy;
 
 import io.appium.mitmproxy.InterceptedMessage;
 import lombok.Getter;
