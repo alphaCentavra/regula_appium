@@ -6,7 +6,7 @@
     <test name="Android App Tests">
         <classes>
             <class name="tests.LoginPositiveTest"/>
-<!--            <class name="tests.LoginNegativeTest"/>-->
+            <class name="tests.LoginNegativeTest"/>
         </classes>
     </test>
 </suite>
