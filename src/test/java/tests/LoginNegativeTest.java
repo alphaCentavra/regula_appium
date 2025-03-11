@@ -23,9 +23,9 @@ public class LoginNegativeTest extends BaseTest {
 
     @Test(dataProvider = "loginInvalidValues") // Это негативный тест. Проверяем сначала ввод, потом вставку текста. Используем регулярку, чтобы получить то сообщение, в котором обрезаются невалидные символы.
     @Severity(SeverityLevel.NORMAL)
-    @AllureId("5")
+    @AllureId("4")
     @Description("Проверяем сначала ввод, потом вставку текста в поле 'Логин'")
-    public void testValidationsForLoginField() {
+    public void testValidationsForLoginField(String value) {
 
     }
 
@@ -39,10 +39,10 @@ public class LoginNegativeTest extends BaseTest {
     }
 
     @Test(dataProvider = "passwordInvalidValues")// Это негативный тест. Проверяем сначала ввод, потом вставку текста. Используем регулярку, чтобы получить то сообщение, в котором обрезаются невалидные символы.
-    @AllureId("4")
+    @AllureId("5")
     @Description("Проверяем сначала ввод, потом вставку текста в поле 'Пароль'")
     @Severity(SeverityLevel.NORMAL)
-    public void testValidationsForPasswordField() {
+    public void testValidationsForPasswordField(String value) {
 
     }
 

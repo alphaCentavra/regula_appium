@@ -1,5 +1,7 @@
 package base;
 
+import config.ConfigReader;
+import config.EmulatorConfig;
 import io.appium.java_client.AppiumDriver;;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,12 +30,12 @@ public class BaseTest {
         logger.info("Выполнение необходимых настроек для запуска приложения в эмуляторе");
         platform = "Android";
         DesiredCapabilities capabilities = new CapabilitiesBuilder()
-                .setPlatformName("Android")
-                .setDeviceName("Pixel 6 Pro API 33") // подставить сюда название своего устройства или эмулятора
-                .setAutomationName("UiAutomator2")
-                .setApp("C:/temp/idea_projects/appium/src/main/resources/apk/app.apk")// подставить сюда полный путь к .apk файлу
-                .setNoReset(true)
-                .setProxy("--proxy-server=http://127.0.0.1:8080")
+                .setPlatformName(ConfigReader.emulatorConfig.platformName())
+                .setDeviceName(ConfigReader.emulatorConfig.deviceName()) // подставить сюда название своего устройства или эмулятора
+                .setAutomationName(ConfigReader.emulatorConfig.automationName())
+                .setApp(ConfigReader.emulatorConfig.app())// подставить сюда полный путь к .apk файлу
+                .setNoReset(ConfigReader.emulatorConfig.noReset())
+                .setProxy(ConfigReader.emulatorConfig.proxy())
                 .build();
 
         logger.info("Инициализация драйвера");
@@ -55,6 +57,7 @@ public class BaseTest {
     @AfterMethod
     public void tearDown() {
         MITMProxy.getProxy().stopProxyListener();
+        logger.info("Закрытие драйвера");
         if (driver != null) {
             driver.quit();
         }

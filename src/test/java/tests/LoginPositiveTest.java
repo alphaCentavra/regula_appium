@@ -1,20 +1,17 @@
 package tests;
 
 import base.BaseTest;
+import config.ConfigReader;
 import io.qameta.allure.*;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static data.TestData.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
 
 /*
 Подробное описание дефектов находится в файле resources -> AppDefects.docx
 Список тест кейсов находится в файле resources -> TestCases.docx
 */
-
 public class LoginPositiveTest extends BaseTest {
 
     @Test
@@ -24,13 +21,13 @@ public class LoginPositiveTest extends BaseTest {
     @Issue("Дефект №3 - Кнопка входа имеет неверное название")
     public void testUserMainLoginPageElements() {
         // тестовые данные
+        String expectedLoginPageTitle = "Вход в Alfa-Test";
+        String loginFieldText = ConfigReader.testDataConfig.loginFieldTextLabel();
+        String loginButtonName = ConfigReader.testDataConfig.loginButtonText();
+        String passwordFieldText = ConfigReader.testDataConfig.validPassword();
+        String trueValue = ConfigReader.testDataConfig.yes();
+        String falseValue = ConfigReader.testDataConfig.no();
         String actualLoginPageTitle = "";
-        String expectedLoginPageTitle = loginPageTitle.getValue();
-        String trueValue = yes.getValue();
-        String falseValue = no.getValue();
-        String loginFieldText = loginFieldTextLabel.getValue();
-        String passwordFieldText = passwordFieldTextLabel.getValue();
-        String loginButtonName = loginButtonText.getValue();
 
         // ШАГ 1 - проверяем видимость и недоступность заголовка, а также его отображаемый текст
         loginPage.waitPageTitleDisplayed();
@@ -66,11 +63,11 @@ public class LoginPositiveTest extends BaseTest {
     @Issue("Дефект №2 - Не отображается валидационное сообщение поля 'Пароль'")
     public void testUserLogin() {
         // тестовые данные
-        String validLoginValue = validLogin.getValue();
-        String validPasswordValue = validPassword.getValue();
-        String invalidLoginValue = invalidLogin.getValue();
-        String invalidPasswordValue = invalidPassword.getValue();
-        String expectedHomePageContent = homePageContent.getValue();
+        String validLoginValue = ConfigReader.testDataConfig.validLogin();
+        String validPasswordValue = ConfigReader.testDataConfig.validPassword();
+        String invalidLoginValue = ConfigReader.testDataConfig.invalidLogin();
+        String invalidPasswordValue = ConfigReader.testDataConfig.invalidPassword();
+        String expectedHomePageContent = "Вход в Alfa-Test выполнен";
         String actualPageContent = "";
 
         // ШАГ 1 - проверяем, что пользователь не может залогиниться с невалидными логином и паролем
@@ -105,9 +102,9 @@ public class LoginPositiveTest extends BaseTest {
     @Issue("Дефект №4 - Иконка показа.скрытия пароля имеет неверную анимацию")
     public void testPasswordCouldBeHiddenAndShown() { // если получится, можно здесь запилить проверку скриншотов
         // тестовые данные
-        String passwordFieldText = validPassword.getValue();
-        String trueValue = yes.getValue();
-        String falseValue = no.getValue();
+        String passwordFieldText = ConfigReader.testDataConfig.validPassword();
+        String trueValue = ConfigReader.testDataConfig.yes();
+        String falseValue = ConfigReader.testDataConfig.no();
 
         // ШАГ 1 - вводим текст в поле для ввода пароля
         loginPage
