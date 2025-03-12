@@ -2,6 +2,8 @@ package tests;
 
 import base.BaseTest;
 import io.qameta.allure.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -10,7 +12,9 @@ import org.testng.annotations.Test;
 Список тест кейсов находится в файле resources -> TestCases.docx
 */
 
-public class LoginNegativeTest extends BaseTest {
+public class LoginValidationTest extends BaseTest {
+
+    private static final Logger logger = LogManager.getLogger();
 
     // добавить аллюр, прикрутить запуск из .xml файла
     @DataProvider(name = "loginInvalidValues") // разбить этот кейс на два (валидные/невалидные значения, для невалидных проверять и ввод и вставку текста, чтобы проверить на появление и InvalidValue и ExceptValue.)

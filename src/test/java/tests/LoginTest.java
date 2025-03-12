@@ -3,7 +3,12 @@ package tests;
 import base.BaseTest;
 import config.ConfigReader;
 import io.qameta.allure.*;
+import mitmproxy.InterceptedMessages;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -12,7 +17,9 @@ import static org.testng.Assert.assertTrue;
 Подробное описание дефектов находится в файле resources -> AppDefects.docx
 Список тест кейсов находится в файле resources -> TestCases.docx
 */
-public class LoginPositiveTest extends BaseTest {
+public class LoginTest extends BaseTest {
+
+    private static final Logger logger = LogManager.getLogger();
 
     @Test
     @AllureId("1")
@@ -22,33 +29,33 @@ public class LoginPositiveTest extends BaseTest {
     public void testUserMainLoginPageElements() {
         // тестовые данные
         String expectedLoginPageTitle = "Вход в Alfa-Test";
-        String loginFieldText = ConfigReader.testDataConfig.loginFieldTextLabel();
-        String loginButtonName = ConfigReader.testDataConfig.loginButtonText();
-        String passwordFieldText = ConfigReader.testDataConfig.validPassword();
+        String loginFieldText = "Логин";
+        String loginButtonName = "Войти";
+        String passwordFieldText = "Пароль";
         String trueValue = ConfigReader.testDataConfig.yes();
         String falseValue = ConfigReader.testDataConfig.no();
         String actualLoginPageTitle = "";
 
-        // ШАГ 1 - проверяем видимость и недоступность заголовка, а также его отображаемый текст
+        logger.info("ШАГ 1 - проверяем видимость и недоступность заголовка, а также его отображаемый текст");
         loginPage.waitPageTitleDisplayed();
         assertEquals(loginPage.isPageTitleFocusable(), falseValue, "Заголовку страницы можно установить фокус");
         actualLoginPageTitle = loginPage.getPageTitle();
         assertEquals(actualLoginPageTitle, expectedLoginPageTitle,
                 "Заголовок '" + actualLoginPageTitle + "' на странице логина не равен " + expectedLoginPageTitle);
 
-        // ШАГ 2 - проверяем видимость и доступность поля 'Логин', то что это текстовое поле, которое имеет лейбл "Логин"
+        logger.info("ШАГ 2 - проверяем видимость и доступность поля 'Логин', то что это текстовое поле, которое имеет лейбл 'Логин'");
         assertTrue(loginPage.isLoginFieldDisplayed(), "Поле 'Логин' не отображается на странице авторизации");
         assertEquals(loginPage.isLoginFieldFocusable(), trueValue, "В поле 'Логин' страницы авторизации нельзя установить фокус");
         assertEquals(loginPage.isLoginFieldClickable(), trueValue, "Поле 'Логин' страницы авторизации не является кликабельным");
         assertEquals(loginPage.getLoginFieldText(), loginFieldText, "Текст поля 'Логин' страницы авторизации не равен '" + loginFieldText + "'");
 
-        // ШАГ 3 - проверяем видимость и доступность поля 'Пароль', то что это текстовое поле, которое имеет лейбл "Пароль"
+        logger.info("ШАГ 3 - проверяем видимость и доступность поля 'Пароль', то что это текстовое поле, которое имеет лейбл 'Пароль'");
         assertTrue(loginPage.isPasswordFieldDisplayed(), "Поле 'Пароль' не отображается на странице авторизации");
         assertEquals(loginPage.isPasswordFieldFocusable(), trueValue, "В поле 'Пароль' страницы авторизации нельзя установить фокус");
         assertEquals(loginPage.isPasswordFieldClickable(), trueValue, "Поле 'Пароль' страницы авторизации не является кликабельным");
         assertEquals(loginPage.getPasswordFieldText(), passwordFieldText, "Текст поля 'Пароль' страницы авторизации не равен '" + passwordFieldText + "'");
 
-        // ШАГ 4 - проверяем видимость и доступность кнопки 'Войти' и её название
+        logger.info("ШАГ 4 - проверяем видимость и доступность кнопки 'Войти' и её название'");
         assertTrue(loginPage.isLoginButtonDisplayed(), "Кнопка 'Войти' не отображается на странице авторизации");
         assertEquals(loginPage.isLoginButtonFocusable(), trueValue, "На кнопку 'Войти' страницы авторизации нельзя установить фокус");
         assertEquals(loginPage.isLoginButtonClickable(), trueValue, "Кнопка 'Войти' страницы авторизации не кликабельна");
@@ -70,7 +77,7 @@ public class LoginPositiveTest extends BaseTest {
         String expectedHomePageContent = "Вход в Alfa-Test выполнен";
         String actualPageContent = "";
 
-        // ШАГ 1 - проверяем, что пользователь не может залогиниться с невалидными логином и паролем
+        logger.info("ШАГ 1 - проверяем, что пользователь не может залогиниться с невалидными логином и паролем'");
         loginPage
                 .enterUsername(invalidLoginValue)
                 .enterPassword(invalidPasswordValue)
@@ -78,7 +85,7 @@ public class LoginPositiveTest extends BaseTest {
         assertTrue(loginPage.isPageTitleDisplayed(), "Не отображается заголовок страницы логина");
         // тут должны быть проверки валидационных сообщений полей Логин и Пароль
 //        List<InterceptedMessages> networkLogMessages = proxy.getNetworkCalls();
-        // ШАГ 2 - проверяем, что пользователь может залогиниться с валидным логином и паролем
+        logger.info("ШАГ 2 - проверяем, что пользователь может залогиниться с валидным логином и паролем'");
         loginPage
                 .enterUsername(validLoginValue)
                 .enterPassword(validPasswordValue)
@@ -93,33 +100,5 @@ public class LoginPositiveTest extends BaseTest {
         actualPageContent = homePage.getPageContent();
         assertEquals(homePage.getPageContent(), expectedHomePageContent,
                 "Текст '" + actualPageContent + "' на домашней странице не равен " + expectedHomePageContent);
-    }
-
-    @Test
-    @AllureId("3")
-    @Description("Проверяем, что пароль может быть как скрыт, так и отображен")
-    @Severity(SeverityLevel.CRITICAL)
-    @Issue("Дефект №4 - Иконка показа.скрытия пароля имеет неверную анимацию")
-    public void testPasswordCouldBeHiddenAndShown() { // если получится, можно здесь запилить проверку скриншотов
-        // тестовые данные
-        String passwordFieldText = ConfigReader.testDataConfig.validPassword();
-        String trueValue = ConfigReader.testDataConfig.yes();
-        String falseValue = ConfigReader.testDataConfig.no();
-
-        // ШАГ 1 - вводим текст в поле для ввода пароля
-        loginPage
-                .waitPageTitleDisplayed()
-                .enterPassword(passwordFieldText);
-        //проверить скриншот, пароль не показывается и что иконка checked т.е. "глазик" закрыт
-        assertEquals(loginPage.getPasswordFieldAttribute(), trueValue, "Поле 'Пароль' не предназначено для ввода пароля");
-        assertEquals(loginPage.getShowPasswordIconCheckedState(), trueValue, "По умолчанию иконка должна отображаться в перечеркнутом виде");
-        loginPage
-                .clickShowPasswordIcon(1);
-        //проверить скриншот, что пароль показывается и что иконка не checked т.е. "глазик" открыт
-        assertEquals(loginPage.getShowPasswordIconCheckedState(), falseValue, "При одиночном клике иконка должна менять свое состояние на противоположное");
-        loginPage
-                .clickShowPasswordIcon(2);
-        //проверить скриншот, что пароль по-прежнему показывается и что иконка все еще не checked
-        assertEquals(loginPage.getShowPasswordIconCheckedState(), falseValue, "При двойном клике иконка не должна менять свое состояние");
     }
 }

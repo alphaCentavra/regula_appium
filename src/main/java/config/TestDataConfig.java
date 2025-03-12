@@ -14,29 +14,41 @@ public interface TestDataConfig extends Config {
     @Key("validPassword")
     String validPassword();
 
-    @Key("loginFieldTextLabel")
-    String loginFieldTextLabel();
-
     @Key("invalidLogin")
     String invalidLogin();
 
     @Key("invalidPassword")
     String invalidPassword();
 
-    @Key("homePageContent")
-    String homePageContent();
-
-    @Key("loginPageTitle")
-    String loginPageTitle();
-
     @Key("inputFieldMaxLength")
     String inputFieldMaxLength();
 
-    @Key("loginButtonText")
-    String loginButtonText();
+    @Key("folderWithExpectedScreenshots")
+    String folderWithExpectedScreenshots();
 
-    @Key("passwordFieldTextLabel")
-    String passwordFieldTextLabel();
+    @Key("folderWithActualScreenshots")
+    String folderWithActualScreenshots();
+
+    @Key("folderWithComparisonScreenshots")
+    String folderWithComparisonScreenshots();
+
+    @Key("passwordNotShownExpectedValue")
+    String passwordNotShownExpectedValue();
+
+    @Key("passwordNotShownActualValue")
+    String passwordNotShownActualValue();
+
+    @Key("imageComparisonResultNotShownValue")
+    String imageComparisonResultNotShownValue();
+
+    @Key("passwordIsShownExpectedValue")
+    String passwordIsShownExpectedValue();
+
+    @Key("passwordIsShownActualValue")
+    String passwordIsShownActualValue();
+
+    @Key("imageComparisonResultIsShownValue")
+    String imageComparisonResultIsShownValue();
 
     @Key("waitTime")
     int waitTime();

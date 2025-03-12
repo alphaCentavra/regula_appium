@@ -5,8 +5,10 @@
     </listeners>
     <test name="Android App Tests">
         <classes>
-            <class name="tests.LoginPositiveTest"/>
-            <class name="tests.LoginNegativeTest"/>
+            <class name="tests.LoginTest"/>
+            <class name="tests.LoginValidationTest"/>
+            <class name="tests.LoginScreenshotTest"/>
+            <class name="tests.LoginScreenshotTest"/>
         </classes>
     </test>
 </suite>
