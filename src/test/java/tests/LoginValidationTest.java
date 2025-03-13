@@ -13,6 +13,10 @@ import java.util.regex.Pattern;
 
 import static org.testng.Assert.*;
 
+/*
+Описание дефектов находится в файле test -> resources -> docs -> AppDefects.xls
+Список тест кейсов находится в файле test -> resources -> docs -> TestCases.doc
+*/
 public class LoginValidationTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger();
@@ -40,26 +44,28 @@ public class LoginValidationTest extends BaseTest {
         String usernameValidationMessage = "";
         int usernameLength = 0;
 
+        logger.info("ШАГ 1 - вводим текст в поле ввода пароля");
         Pattern pattern = Pattern.compile(regEx);
         Matcher matcher = pattern.matcher(value);
         loginPage
                 .enterUsername(value)
                 .clickLoginButton();
-        logger.info("ШАГ 1 - проверяем, что при вводе текста осуществляется проверка на то, чтобы длина логина не превышала максимальную");
+        logger.info("ШАГ 2 - проверяем, что при вводе текста осуществляется проверка на то, чтобы длина логина не превышала максимальную");
         usernameLength = loginPage.getLoginFieldText().length();
 //        if (usernameLength > inputFieldMaxLength) {
 //            usernameValidationMessage = loginPage.getUsernameValidationMessage();
 //            assertFalse(usernameValidationMessage.isEmpty(), "Не осуществляется проверка на то, чтобы длина логина не превышала максимальную");
 //        }
-        logger.info("ШАГ 2 - проверяем, что при вводе текста осуществляется проверка на ввод не разрешенных символов");
+        logger.info("ШАГ 3 - проверяем, что при вводе текста осуществляется проверка на ввод не разрешенных символов");
   //        if (!matcher.matches()) {
 //            usernameValidationMessage = loginPage.getUsernameValidationMessage();
 //            assertEquals(usernameValidationMessage, invalidValueValidationMessage);
 //        }
+        logger.info("ШАГ 4 - вставляем текст в поле ввода пароля");
         loginPage
                 .pastePassword(value)
                 .clickLoginButton();
-        logger.info("ШАГ 3 - проверяем, что при вставке текста невалидные символы обрезались и вывелось соответствующее сообщение об ошибке");
+        logger.info("ШАГ 5 - проверяем, что при вставке текста невалидные символы обрезались и вывелось соответствующее сообщение об ошибке");
         usernameLength = loginPage.getLoginFieldText().length();
         assertTrue(usernameLength <= value.length(), "Невалидные символы не были обрезаны при вставке");
 //        usernameValidationMessage = loginPage.getUsernameValidationMessage();
