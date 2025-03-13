@@ -14,10 +14,9 @@ import java.util.regex.Pattern;
 import static org.testng.Assert.*;
 
 /*
-Подробное описание дефектов находится в файле resources -> AppDefects.docx
+Описание дефектов находится в файле resources -> AppDefects.docx
 Список тест кейсов находится в файле resources -> TestCases.docx
 */
-
 public class LoginValidationTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger();
@@ -25,15 +24,15 @@ public class LoginValidationTest extends BaseTest {
     private static final String exceptValueValidationMessage = ConfigReader.testDataConfig.exceptValueValidationMessage();
     private static final String invalidValueValidationMessage = ConfigReader.testDataConfig.invalidValueValidationMessage();
 
-    @DataProvider(name = "loginInvalidValues") // разбить этот кейс на два (валидные/невалидные значения, для невалидных проверять и ввод и вставку текста, чтобы проверить на появление и InvalidValue и ExceptValue.)
-    protected Object[][] loginInvalidValues() {
+    @DataProvider(name = "loginValues")
+    protected Object[][] loginValues() {
         return new Object[][]{
                 {"Hello, World! This_is-a-test. /path/to/file, example."}, //вводим только валидные символы (латинские буквы A..Z, a..z, символы [ . , / ' _ -], пробел) длиной больше 50 символов
                 {"Hello! 123 This_is-a-test. /path/to/file, example."}, //вводим и валидные и невалидные символы, валидных должно быть меньше 50-ти
         };
     }
 
-    @Test(dataProvider = "loginInvalidValues")
+    @Test(dataProvider = "loginValues")
     @AllureId("4")
     @Description("Проверяем сначала ввод, потом вставку текста в поле 'Логин'")
     @Severity(SeverityLevel.NORMAL)
@@ -47,38 +46,32 @@ public class LoginValidationTest extends BaseTest {
 
         Pattern pattern = Pattern.compile(regEx);
         Matcher matcher = pattern.matcher(value);
-
-        logger.info("ШАГ 1 - проверяем, что при вводе текста осуществляется проверка на то, чтобы длина логина не превышала максимальную");
         loginPage
                 .enterUsername(value)
                 .clickLoginButton();
+        logger.info("ШАГ 1 - проверяем, что при вводе текста осуществляется проверка на то, чтобы длина логина не превышала максимальную");
         usernameLength = loginPage.getLoginFieldText().length();
 //        if (usernameLength > inputFieldMaxLength) {
 //            usernameValidationMessage = loginPage.getUsernameValidationMessage();
 //            assertFalse(usernameValidationMessage.isEmpty(), "Не осуществляется проверка на то, чтобы длина логина не превышала максимальную");
 //        }
-
         logger.info("ШАГ 2 - проверяем, что при вводе текста осуществляется проверка на ввод не разрешенных символов");
-        loginPage
-                .enterUsername(value)
-                .clickLoginButton();
-//        if (!matcher.matches()) {
+  //        if (!matcher.matches()) {
 //            usernameValidationMessage = loginPage.getUsernameValidationMessage();
 //            assertEquals(usernameValidationMessage, invalidValueValidationMessage);
 //        }
-
-        logger.info("ШАГ 3 - проверяем, что при вставке текста невалидные символы обрезались и вывелось соответствующее сообщение об ошибке");
         loginPage
                 .pastePassword(value)
                 .clickLoginButton();
+        logger.info("ШАГ 3 - проверяем, что при вставке текста невалидные символы обрезались и вывелось соответствующее сообщение об ошибке");
         usernameLength = loginPage.getLoginFieldText().length();
         assertTrue(usernameLength <= value.length(), "Невалидные символы не были обрезаны при вставке");
 //        usernameValidationMessage = loginPage.getUsernameValidationMessage();
 //        assertEquals(usernameValidationMessage, exceptValueValidationMessage);
     }
 
-    @DataProvider(name = "passwordInvalidValues")
-    protected Object[][] passwordInvalidValues() {
+    @DataProvider(name = "passwordValues")
+    protected Object[][] passwordValues() {
         return new Object[][]{
                 {"Hello, World! 123 @This_is-a-test. /path/to/file, #"}, //вводим строку пятидесяти одного любого символа
                 {"Hello, World!123 @This_is-a-test. /path/to/file,#!"}, //вводим строку пятидесяти любых символов
@@ -86,7 +79,7 @@ public class LoginValidationTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "passwordInvalidValues")
+    @Test(dataProvider = "passwordValues")
     @AllureId("5")
     @Description("Проверяем сначала ввод, потом вставку текста в поле 'Пароль'")
     @Severity(SeverityLevel.NORMAL)

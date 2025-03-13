@@ -5,14 +5,13 @@ import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import com.github.romankh3.image.comparison.model.ImageComparisonState;
 import config.ConfigReader;
 import io.qameta.allure.*;
-import org.aeonbits.owner.Config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /*
-Подробное описание дефектов находится в файле resources -> AppDefects.docx
+Описание дефектов находится в файле resources -> AppDefects.docx
 Список тест кейсов находится в файле resources -> TestCases.docx
 */
 public class LoginScreenshotTest extends BaseTest {
@@ -50,7 +49,7 @@ public class LoginScreenshotTest extends BaseTest {
                 .clickLoginButton()
                 .waitPageTitleDisplayed();
         logger.info("ШАГ 2 - вводим текст в поле для ввода пароля'");
-        //проверить скриншот, пароль не показывается и что иконка checked т.е. "глазик" закрыт
+        //проверяем на скриншоте, что пароль не показывается и что иконка checked т.е. "глазик" закрыт
         ImageComparisonResult imageComparisonResultNotShown = loginPage
                 .savePasswordFieldScreenshot(actualScreensDir, passwordNotShownActualValue)
                 .compareScreenshots(passwordNotShownActualValue, passwordNotShownExpectedValue, imageComparisonResultNotShownValue);
@@ -61,7 +60,7 @@ public class LoginScreenshotTest extends BaseTest {
                 .clickShowPasswordIcon(1)
                 .clickLoginButton()
                 .waitPageTitleDisplayed();
-        //проверить скриншот, что пароль показывается и что иконка не checked т.е. "глазик" открыт
+        //проверяем на скриншоте, что пароль показывается и что иконка не checked т.е. "глазик" открыт
         ImageComparisonResult imageComparisonResultIsShown = loginPage
                 .savePasswordFieldScreenshot(actualScreensDir, passwordIsShownActualValue)
                 .compareScreenshots(passwordIsShownActualValue, passwordIsShownExpectedValue, imageComparisonResultIsShownValue);
@@ -71,7 +70,7 @@ public class LoginScreenshotTest extends BaseTest {
                 .clickShowPasswordIcon(2)
                 .clickLoginButton()
                 .waitPageTitleDisplayed();
-        //проверить скриншот, что пароль по-прежнему показывается и что иконка все еще не checked
+        //проверяем на скриншоте, что пароль по-прежнему показывается и что иконка все еще не checked
         imageComparisonResultIsShown = loginPage
                 .savePasswordFieldScreenshot(actualScreensDir, passwordIsShownActualValue)
                 .compareScreenshots(passwordIsShownActualValue, passwordIsShownExpectedValue, imageComparisonResultIsShownValue);

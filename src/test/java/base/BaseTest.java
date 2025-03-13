@@ -25,7 +25,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        logger.info("Выполнение необходимых настроек для запуска приложения в эмуляторе");
+        //Выполнение необходимых настроек для запуска приложения в эмуляторе
         platform = "Android";
         DesiredCapabilities capabilities = new CapabilitiesBuilder()
                 .setPlatformName(ConfigReader.emulatorConfig.platformName())

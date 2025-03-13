@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class LoginPage extends BasePage {
 
-    // использовать логирование
     private static final Logger logger = LogManager.getLogger();
 
     protected AppiumDriver driver;
@@ -217,9 +216,9 @@ public class LoginPage extends BasePage {
         return pageTitle.getText();
     }
 
-    @Step("Кликаем на иконку 'показать/скрыть пароль'")
+    @Step("Кликаем на иконку показать/скрыть пароль'")
     public LoginPage clickShowPasswordIcon(int count) {
-        logger.info("Кликаем на иконку 'показать/скрыть пароль'");
+        logger.info("Кликаем на иконку показать/скрыть пароль'");
         waitForElementVisible(showPasswordIcon);
         click(showPasswordIcon, count);
         return this;

@@ -37,7 +37,7 @@ public class BasePage {
 
     @Step("Cохраняем полученный скриншот в файл с именем {fileName}")
     public void saveScreenshot(BufferedImage bufferedImage, String path, String fileName) {
-        logger.info("Получаем содержимое страницы");
+        logger.info("Cохраняем полученный скриншот в файл");
         File imageFile = new File(path + fileName + ".png");
         try {
             ImageIO.write(bufferedImage, "png", imageFile);
@@ -63,7 +63,7 @@ public class BasePage {
                 elementSize.width, elementSize.height);
     }
 
-    @Step("Сравниваем два скриншот '{actualScreenshotName}' со скриншотом '{expectedScreenshotName}' и сохраняем результат сравнения в файл с именем {comparisonResultName}")
+    @Step("Сравниваем скриншот '{actualScreenshotName}' со скриншотом '{expectedScreenshotName}' и сохраняем результат сравнения в файл с именем {comparisonResultName}")
     public ImageComparisonResult compareScreenshots(String actualScreenshotName, String expectedScreenshotName, String comparisonResultName) {
         logger.info("Загружаем ожидаемое изображения для сравнения");
         BufferedImage expectedImage = ImageComparisonUtil
@@ -118,16 +118,16 @@ public class BasePage {
         waitForElementVisible(element, waitTimeInSeconds);
     }
 
-    @Step("Ждем {timeout} секунд пока не будет виден элемент страницы")
+    @Step("Ждем {timeout} секунд пока элемент страницы будет не виден")
     protected void waitForElementInvisible(WebElement element, int timeout) {
-        logger.info("Ждем несколько секунд пока не будет виден элемент страницы");
+        logger.info("Ждем несколько секунд пока элемент страницы будет не виден");
         new WebDriverWait(driver, Duration.ofSeconds(timeout))
                 .until(ExpectedConditions.invisibilityOf(element));
     }
 
-    @Step("Ждем пока не будет виден элемент страницы")
+    @Step("Ждем пока элемент страницы будет не виден")
     protected void waitForElementNotVisible(WebElement element) {
-        logger.info("Ждем несколько секунд пока не будет виден элемент страницы");
+        logger.info("Ждем несколько секунд пока элемент страницы будет не виден");
         waitForElementInvisible(element, waitTimeInSeconds);
     }
 }

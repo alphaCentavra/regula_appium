@@ -11,7 +11,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 /*
-Подробное описание дефектов находится в файле resources -> AppDefects.docx
+Описание дефектов находится в файле resources -> AppDefects.docx
 Список тест кейсов находится в файле resources -> TestCases.docx
 */
 public class LoginTest extends BaseTest {
@@ -67,6 +67,7 @@ public class LoginTest extends BaseTest {
     @Issue("Дефект №2 - Не отображается валидационное сообщение поля 'Пароль'")
     public void testUserLogin() {
         // тестовые данные
+        String invalidValueValidationMessage = ConfigReader.testDataConfig.invalidValueValidationMessage();
         String validLoginValue = ConfigReader.testDataConfig.validLogin();
         String validPasswordValue = ConfigReader.testDataConfig.validPassword();
         String invalidLoginValue = ConfigReader.testDataConfig.invalidLogin();
@@ -79,13 +80,19 @@ public class LoginTest extends BaseTest {
                 .enterUsername(invalidLoginValue)
                 .enterPassword(invalidPasswordValue)
                 .clickLoginButton();
+        // после того, как будут исправлены дефект №1 и дефект №2, здесь будут добавлены проверки на то, что были введены некорректные данные
+        // usernameValidationMessage = loginPage.getUsernameValidationMessage();
+        // assertEquals(usernameValidationMessage, invalidValueValidationMessage);
+        // String passwordValidationMessage = loginPage.getPasswordValidationMessage();
+        // assertFalse(passwordValidationMessage.isEmpty(), "Не осуществляется проверка на то, чтобы длина пароля не превышала максимальную");
         assertTrue(loginPage.isPageTitleDisplayed(), "Не отображается заголовок страницы логина");
         logger.info("ШАГ 2 - проверяем, что пользователь может залогиниться с валидным логином и паролем'");
         loginPage
                 .enterUsername(validLoginValue)
                 .enterPassword(validPasswordValue)
                 .clickLoginButton()
-                .waitPageTitleNotVisible(); // тут еще нужно будет сделать перехват трафика и убедиться, что вызывается API метод authorize
+                .waitPageTitleNotVisible();
+        // тут можно сделать перехват трафика и убедиться, что вызывается API метод authorize
         homePage.waitPageContentVisible();
         actualPageContent = homePage.getPageContent();
         assertEquals(homePage.getPageContent(), expectedHomePageContent,
