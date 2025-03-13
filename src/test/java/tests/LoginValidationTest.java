@@ -13,10 +13,6 @@ import java.util.regex.Pattern;
 
 import static org.testng.Assert.*;
 
-/*
-Описание дефектов находится в файле resources -> AppDefects.docx
-Список тест кейсов находится в файле resources -> TestCases.docx
-*/
 public class LoginValidationTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger();

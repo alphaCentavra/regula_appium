@@ -10,10 +10,6 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-/*
-Описание дефектов находится в файле resources -> AppDefects.docx
-Список тест кейсов находится в файле resources -> TestCases.docx
-*/
 public class LoginTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger();

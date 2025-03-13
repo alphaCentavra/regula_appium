@@ -10,10 +10,6 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
-/*
-Описание дефектов находится в файле resources -> AppDefects.docx
-Список тест кейсов находится в файле resources -> TestCases.docx
-*/
 public class LoginScreenshotTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger();
