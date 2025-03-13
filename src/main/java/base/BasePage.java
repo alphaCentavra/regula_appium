@@ -5,10 +5,13 @@ import com.github.romankh3.image.comparison.ImageComparisonUtil;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import config.ConfigReader;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -90,7 +93,16 @@ public class BasePage {
     @Step("Вводим текст '{text}' в поле для ввода")
     protected void sendKeys(WebElement element, String text) {
         logger.info("Вводим текст в поле для ввода");
+        element.clear();
         element.sendKeys(text);
+    }
+
+    @Step("Вставляем текст '{text}' в поле для ввода")
+    protected void pasteSymbols(WebElement element, String text) {
+        logger.info("Вставляем текст в поле для ввода");
+        element.clear();
+        ((AndroidDriver)driver).setClipboardText(text);
+        element.sendKeys(((AndroidDriver)driver).getClipboardText());
     }
 
     @Step("Ждем {timeout} секунд пока будет виден элемент страницы")

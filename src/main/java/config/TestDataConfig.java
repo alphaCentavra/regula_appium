@@ -21,7 +21,13 @@ public interface TestDataConfig extends Config {
     String invalidPassword();
 
     @Key("inputFieldMaxLength")
-    String inputFieldMaxLength();
+    int inputFieldMaxLength();
+
+    @Key("exceptValueValidationMessage")
+    String exceptValueValidationMessage();
+
+    @Key("invalidValueValidationMessage")
+    String invalidValueValidationMessage();
 
     @Key("folderWithExpectedScreenshots")
     String folderWithExpectedScreenshots();

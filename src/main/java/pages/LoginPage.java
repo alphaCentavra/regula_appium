@@ -61,6 +61,14 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Вставляем пароль в поле ввода пароля")
+    public LoginPage pastePassword(String password) {
+        logger.info("Вставляем логин в поле ввода пароля");
+        waitForElementVisible(passwordField);
+        pasteSymbols(passwordField, password);
+        return this;
+    }
+
     @Step("Получаем сообщение о валидации поля ввода логина")
     public String getUsernameValidationMessage() {
         logger.info("Получаем сообщение о валидации поля ввода логина");

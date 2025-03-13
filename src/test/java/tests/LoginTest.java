@@ -3,12 +3,9 @@ package tests;
 import base.BaseTest;
 import config.ConfigReader;
 import io.qameta.allure.*;
-import mitmproxy.InterceptedMessages;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -83,19 +80,12 @@ public class LoginTest extends BaseTest {
                 .enterPassword(invalidPasswordValue)
                 .clickLoginButton();
         assertTrue(loginPage.isPageTitleDisplayed(), "Не отображается заголовок страницы логина");
-        // тут должны быть проверки валидационных сообщений полей Логин и Пароль
-//        List<InterceptedMessages> networkLogMessages = proxy.getNetworkCalls();
         logger.info("ШАГ 2 - проверяем, что пользователь может залогиниться с валидным логином и паролем'");
         loginPage
                 .enterUsername(validLoginValue)
                 .enterPassword(validPasswordValue)
                 .clickLoginButton()
                 .waitPageTitleNotVisible(); // тут еще нужно будет сделать перехват трафика и убедиться, что вызывается API метод authorize
-        // проверяем, что в списке отправленных сетевых запросов есть метод 'authorize'
-//        for (InterceptedMessages msg : networkLogMessages) {
-//            System.out.println("Captured Request at: " + msg.getTimestamp());
-//            System.out.println("Request Details: " + msg.getInterceptedMessage());
-//        }
         homePage.waitPageContentVisible();
         actualPageContent = homePage.getPageContent();
         assertEquals(homePage.getPageContent(), expectedHomePageContent,
