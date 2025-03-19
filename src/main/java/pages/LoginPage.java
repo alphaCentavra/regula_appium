@@ -52,6 +52,14 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Вставляем логин в поле ввода логина")
+    public LoginPage pasteUserName(String username) {
+        logger.info("Вставляем логин в поле ввода логина");
+        waitForElementVisible(loginField);
+        pasteSymbols(loginField, username);
+        return this;
+    }
+
     @Step("Вводим пароль в поле ввода пароля")
     public LoginPage enterPassword(String password) {
         logger.info("Вводим логин в поле ввода пароля");
@@ -62,7 +70,7 @@ public class LoginPage extends BasePage {
 
     @Step("Вставляем пароль в поле ввода пароля")
     public LoginPage pastePassword(String password) {
-        logger.info("Вставляем логин в поле ввода пароля");
+        logger.info("Вставляем пароль в поле ввода пароля");
         waitForElementVisible(passwordField);
         pasteSymbols(passwordField, password);
         return this;

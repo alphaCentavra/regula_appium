@@ -26,9 +26,9 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         //Выполнение необходимых настроек для запуска приложения в эмуляторе
-        platform = "Android";
+        platform = ConfigReader.emulatorConfig.platformName();
         DesiredCapabilities capabilities = new CapabilitiesBuilder()
-                .setPlatformName(ConfigReader.emulatorConfig.platformName())
+                .setPlatformName(platform)
                 .setDeviceName(ConfigReader.emulatorConfig.deviceName()) // подставить сюда название своего устройства или эмулятора
                 .setAutomationName(ConfigReader.emulatorConfig.automationName())
                 .setApp(ConfigReader.emulatorConfig.app())// подставить сюда полный путь к .apk файлу

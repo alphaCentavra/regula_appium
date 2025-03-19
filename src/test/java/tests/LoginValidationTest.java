@@ -27,8 +27,8 @@ public class LoginValidationTest extends BaseTest {
     @DataProvider(name = "loginValues")
     protected Object[][] loginValues() {
         return new Object[][]{
-                {"Hello, World! This_is-a-test. /path/to/file, example."}, //вводим только валидные символы (латинские буквы A..Z, a..z, символы [ . , / ' _ -], пробел) длиной больше 50 символов
-                {"Hello! 123 This_is-a-test. /path/to/file, example."}, //вводим и валидные и невалидные символы, валидных должно быть меньше 50-ти
+                {"Hello, World This_is-a-test. /path/to/file, example."}, //вводим только валидные символы (латинские буквы A..Z, a..z, символы [ . , / ' _ -], пробел) длиной больше 50 символов
+                {"Hello! 123 This_is-a-test. /path/to/file, example."} //вводим и валидные и невалидные символы, валидных должно быть меньше 50-ти
         };
     }
 
@@ -56,20 +56,22 @@ public class LoginValidationTest extends BaseTest {
 //            usernameValidationMessage = loginPage.getUsernameValidationMessage();
 //            assertFalse(usernameValidationMessage.isEmpty(), "Не осуществляется проверка на то, чтобы длина логина не превышала максимальную");
 //        }
-        logger.info("ШАГ 3 - проверяем, что при вводе текста осуществляется проверка на ввод не разрешенных символов");
-  //        if (!matcher.matches()) {
+        logger.info("ШАГ 3 - проверяем, что при вставке текста осуществляется проверка на ввод не разрешенных символов");
+          if (!matcher.matches()) {
 //            usernameValidationMessage = loginPage.getUsernameValidationMessage();
 //            assertEquals(usernameValidationMessage, invalidValueValidationMessage);
-//        }
-        logger.info("ШАГ 4 - вставляем текст в поле ввода пароля");
+        }
+        logger.info("ШАГ 4 - вставляем текст в поле ввода логина");
         loginPage
-                .pastePassword(value)
+                .pasteUserName(value)
                 .clickLoginButton();
         logger.info("ШАГ 5 - проверяем, что при вставке текста невалидные символы обрезались и вывелось соответствующее сообщение об ошибке");
-        usernameLength = loginPage.getLoginFieldText().length();
-        assertTrue(usernameLength <= value.length(), "Невалидные символы не были обрезаны при вставке");
+        if (!matcher.matches()) {
+            usernameLength = loginPage.getLoginFieldText().length();
+            assertTrue(usernameLength < value.length(), "Невалидные символы не были обрезаны при вставке");
 //        usernameValidationMessage = loginPage.getUsernameValidationMessage();
 //        assertEquals(usernameValidationMessage, exceptValueValidationMessage);
+        }
     }
 
     @DataProvider(name = "passwordValues")
