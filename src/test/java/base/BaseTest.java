@@ -38,7 +38,7 @@ public class BaseTest {
 
         logger.info("Инициализация драйвера");
         try {
-            URL remoteUrl = new URL("http://127.0.0.1:4723/wd/hub");
+            URL remoteUrl = new URL(ConfigReader.emulatorConfig.remoteURLLink());
             driver = AppiumDriverUtil.getDriver(platform, remoteUrl, capabilities);
         } catch (Exception e) {
             throw new RuntimeException(e);

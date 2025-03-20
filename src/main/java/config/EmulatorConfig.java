@@ -27,4 +27,7 @@ public interface EmulatorConfig extends Config {
 
     @Key("proxy")
     String proxy();
+
+    @Key("remoteURLLink")
+    String remoteURLLink();
 }
