@@ -1,6 +1,6 @@
 package utils;
 
-import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class CapabilitiesBuilder {
@@ -11,32 +11,37 @@ public class CapabilitiesBuilder {
     }
 
     public CapabilitiesBuilder setPlatformName(String platformName) {
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, platformName);
+        capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
         return this;
     }
 
     public CapabilitiesBuilder setDeviceName(String deviceName) {
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
-        return this;
-    }
-
-    public CapabilitiesBuilder setApp(String appPath) {
-        capabilities.setCapability(MobileCapabilityType.APP, appPath);
+        capabilities.setCapability("deviceName", deviceName);
         return this;
     }
 
     public CapabilitiesBuilder setAutomationName(String automationName) {
-        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, automationName);
+        capabilities.setCapability("automationName", automationName);
+        return this;
+    }
+
+    public CapabilitiesBuilder setAppPackage(String appPackage) {
+        capabilities.setCapability("appPackage", appPackage);
+        return this;
+    }
+
+    public CapabilitiesBuilder setAppActivity(String appActivity) {
+        capabilities.setCapability("appActivity", appActivity);
         return this;
     }
 
     public CapabilitiesBuilder setNoReset(Boolean value) {
-        capabilities.setCapability(MobileCapabilityType.NO_RESET, value);
+        capabilities.setCapability("noReset", value);
         return this;
     }
 
-    public CapabilitiesBuilder setProxy(String proxy) {
-        capabilities.setCapability(MobileCapabilityType.PROXY, proxy);
+    public CapabilitiesBuilder setFullReset(Boolean value) {
+        capabilities.setCapability("fullReset", value);
         return this;
     }
 

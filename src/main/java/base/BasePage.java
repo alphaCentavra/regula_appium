@@ -4,8 +4,8 @@ import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.ImageComparisonUtil;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import config.ConfigReader;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,9 +27,9 @@ public class BasePage {
     protected AppiumDriver driver;
 
     private final int waitTimeInSeconds = ConfigReader.testDataConfig.waitTime();
-    private String expectedScreensDir = ConfigReader.testDataConfig.folderWithExpectedScreenshots();
-    private String actualScreensDir = ConfigReader.testDataConfig.folderWithActualScreenshots();
-    private String comparisonScreensDir = ConfigReader.testDataConfig.folderWithComparisonScreenshots();
+    private final String expectedScreensDir = ConfigReader.testDataConfig.folderWithExpectedScreenshots();
+    private final String actualScreensDir = ConfigReader.testDataConfig.folderWithActualScreenshots();
+    private final String comparisonScreensDir = ConfigReader.testDataConfig.folderWithComparisonScreenshots();
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
@@ -76,33 +76,12 @@ public class BasePage {
         return new ImageComparison(expectedImage, actualImage, comparisonResultImage).compareImages();
     }
 
-    @Step("Кликаем по элементу страницы")
-    protected void click(WebElement element) {
-        logger.info("Кликаем по элементу страницы");
-        element.click();
-    }
-
-    @Step("Кликаем по элементу страницы страницы {count} раз")
-    protected void click(WebElement element, int count) {
-        logger.info("Кликаем по элементу страницы страницы несколько раз");
-        for (int i = 0; i < count; i++) {
-            element.click();
-        }
-    }
-
-    @Step("Вводим текст '{text}' в поле для ввода")
-    protected void sendKeys(WebElement element, String text) {
-        logger.info("Вводим текст в поле для ввода");
-        element.clear();
-        element.sendKeys(text);
-    }
-
-    @Step("Вставляем текст '{text}' в поле для ввода")
-    protected void pasteSymbols(WebElement element, String text) {
-        logger.info("Вставляем текст в поле для ввода");
-        element.clear();
-        ((AndroidDriver)driver).setClipboardText(text);
-        element.sendKeys(((AndroidDriver)driver).getClipboardText());
+    @Step("Прокручиваем страницу до элемента с текстом: '{text}'")
+    public WebElement scrollToElementByText(String text) {
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().text(\"" + text + "\"))"
+        ));
     }
 
     @Step("Ждем {timeout} секунд пока будет виден элемент страницы")

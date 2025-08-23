@@ -1,14 +1,12 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Appium Test Suite">
+<suite name="Regula Test Suite">
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
-    <test name="Android App Tests">
+    <test name="Regula Tests">
         <classes>
-            <class name="tests.LoginTest"/>
-            <class name="tests.LoginValidationTest"/>
-            <class name="tests.LoginScreenshotTest"/>
-            <class name="tests.LoginScreenshotTest"/>
+            <class name="tests.TitlePageScreenshotTest"/>
+            <class name="tests.TitlePageTest"/>
         </classes>
     </test>
 </suite>

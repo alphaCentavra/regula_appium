@@ -4,18 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bd37ebb-2327-4191-9001-8f0eea669b12" name="Changes" comment="small changes were made">
-      <change afterPath="$PROJECT_DIR$/src/main/java/base/BasePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/TestData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/HomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/LoginPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/LoginTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/log4j2.xml" afterDir="false" />
+    <list default="true" id="2bd37ebb-2327-4191-9001-8f0eea669b12" name="Changes" comment="Regula demo framework was implemented">
+      <change afterPath="$PROJECT_DIR$/src/main/java/pages/TitlePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests/TitlePageScreenshotTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests/TitlePageTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/actualScreenshots/actualValue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/docs/TestCases.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/expectedScreenshots/expectedValue.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/LoginPageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/BasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/EmulatorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/EmulatorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/TestDataConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/TestDataConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mitmproxy/InterceptedMessages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mitmproxy/MITMProxy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/HomePage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/LoginPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/CapabilitiesBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/CapabilitiesBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/apk/app.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/base/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/LoginScreenshotTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/LoginTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/LoginValidationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/actualScreenshots/passwordIsShownActual.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/actualScreenshots/passwordNotShownActual.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/comparisonScreenshots/imageComparisonResultIsShown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/comparisonScreenshots/imageComparisonResultNotShown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/configs/emulator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/configs/emulator.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/configs/testdata.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/configs/testdata.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/docs/AppDefects.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/docs/TestCases.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/expectedScreenshots/passwordIsShownExpected.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/expectedScreenshots/passwordNotShownExpected.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +58,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2trhS3vytyAwsPe9hByYa3uMMBG" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,9 +72,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/temp/idea_projects/appium/src/main/resources",
+    "last_opened_file_path": "D:/appium/src/test/java/tests",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
@@ -59,11 +83,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\appium\src\test\java\tests" />
       <recent name="C:\temp\idea_projects\appium\src\test\resources" />
       <recent name="C:\temp\idea_projects\appium\src\main\resources" />
       <recent name="C:\temp\idea_projects\appium\src\main\resources\apk" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\appium\src\test\resources\docs" />
       <recent name="C:\temp\idea_projects\appium\src\main\resources" />
       <recent name="C:\temp\idea_projects\appium\src" />
       <recent name="C:\temp\idea_projects\appium\src\test\resources" />
@@ -73,12 +99,23 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="tests" />
       <recent name="data" />
       <recent name="util" />
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.LoginTest">
+  <component name="RunManager" selected="TestNG.D:/appium/testng.xml">
+    <configuration name="D:/appium/testng.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="appium" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/testng.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoginTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="appium" />
       <extension name="coverage">
@@ -96,7 +133,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.testLogin" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginTest.testUserMainLoginPageElements" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="appium" />
       <extension name="coverage">
         <pattern>
@@ -106,7 +143,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.LoginTest" />
-      <option name="METHOD_NAME" value="testLogin" />
+      <option name="METHOD_NAME" value="testUserMainLoginPageElements" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -114,19 +151,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.testLoginPageMainElements" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="tests.LoginTest" />
-      <option name="METHOD_NAME" value="testLoginPageMainElements" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginTest.testUserSuccessfulLogin" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="TitlePageScreenshotTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="appium" />
       <extension name="coverage">
         <pattern>
@@ -135,16 +160,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.LoginTest" />
-      <option name="METHOD_NAME" value="testUserSuccessfulLogin" />
-      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="MAIN_CLASS_NAME" value="tests.TitlePageScreenshotTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.testUserUnsuccessfulLogin" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="TitlePageTest.testUserMainTitlePageElements" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="appium" />
       <extension name="coverage">
         <pattern>
@@ -153,8 +177,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.LoginTest" />
-      <option name="METHOD_NAME" value="testUserUnsuccessfulLogin" />
+      <option name="MAIN_CLASS_NAME" value="tests.TitlePageTest" />
+      <option name="METHOD_NAME" value="testUserMainTitlePageElements" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -164,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.D:/appium/testng.xml" />
+        <item itemvalue="TestNG.TitlePageScreenshotTest" />
+        <item itemvalue="TestNG.TitlePageTest.testUserMainTitlePageElements" />
+        <item itemvalue="TestNG.LoginTest.testUserMainLoginPageElements" />
         <item itemvalue="TestNG.LoginTest" />
-        <item itemvalue="TestNG.LoginTest.testUserSuccessfulLogin" />
-        <item itemvalue="TestNG.LoginTest.testUserUnsuccessfulLogin" />
-        <item itemvalue="TestNG.LoginTest.testLogin" />
-        <item itemvalue="TestNG.LoginTest.testLoginPageMainElements" />
       </list>
     </recent_temporary>
   </component>
@@ -217,6 +241,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Draft version of application was created" />
     <MESSAGE value="small changes were made" />
-    <option name="LAST_COMMIT_MESSAGE" value="small changes were made" />
+    <MESSAGE value="Regula demo framework was implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Regula demo framework was implemented" />
   </component>
 </project>

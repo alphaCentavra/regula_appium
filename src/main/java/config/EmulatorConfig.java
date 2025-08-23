@@ -18,15 +18,19 @@ public interface EmulatorConfig extends Config {
     @Key("automationName")
     String automationName();
 
-    @Key("app")
-    String app();
+    @Key("appPackage")
+    String appPackage();
+
+    @Key("appActivity")
+    String appActivity();
 
     @Key("noReset")
     @DefaultValue("true")
     boolean noReset();
 
-    @Key("proxy")
-    String proxy();
+    @Key("fullReset")
+    @DefaultValue("false")
+    boolean fullReset();
 
     @Key("remoteURLLink")
     String remoteURLLink();
