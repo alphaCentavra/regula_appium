@@ -18,7 +18,7 @@ public class TitlePageTest extends BaseTest {
 
     @Test
     @AllureId("1")
-    @Description("Проверяем, что основные элементы страницы отображаются на заглавной странице")
+    @Description("Проверяем, что основные элементы отображаются на заглавной странице")
     @Severity(SeverityLevel.CRITICAL)
     public void testUserMainTitlePageElements() {
         // тестовые данные
