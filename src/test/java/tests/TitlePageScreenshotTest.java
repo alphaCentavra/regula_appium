@@ -27,16 +27,27 @@ public class TitlePageScreenshotTest extends BaseTest {
         String actualScreensDir = ConfigReader.testDataConfig.folderWithActualScreenshots();
         String expectedScreensDir = ConfigReader.testDataConfig.folderWithExpectedScreenshots();
 
-        String expectedValue = ConfigReader.testDataConfig.expectedValue();
-        String actualValue = ConfigReader.testDataConfig.actualValue();
-        String imageComparisonResultValue = ConfigReader.testDataConfig.imageComparisonResultValue();
+        String expectedContentValue = ConfigReader.testDataConfig.expectedContentValue();
+        String expectedLogoValue = ConfigReader.testDataConfig.expectedLogoValue();
 
-        logger.info("Проверяем на скриншоте верстку заглавной станицы");
-        titlePage.waitPageContentDisplayed();
+        String actualContentValue = ConfigReader.testDataConfig.actualContentValue();
+        String actualLogoValue = ConfigReader.testDataConfig.actualLogoValue();
+
+        String contentComparisonResultValue = ConfigReader.testDataConfig.contentComparisonResultValue();
+        String logoComparisonResultValue = ConfigReader.testDataConfig.logoComparisonResultValue();
+
+        logger.info("ШАГ1 - Проверяем на скриншоте верстку логотипа заглавной станицы");
         ImageComparisonResult imageComparisonResult = titlePage
-//                .savePageScreenshot(expectedScreensDir, expectedValue)
-                .savePageScreenshot(actualScreensDir, actualValue)
-                .compareScreenshots(actualValue, expectedValue, imageComparisonResultValue);
+//                .saveLogoPageScreenshot(expectedScreensDir, expectedLogoValue)
+                .saveLogoPageScreenshot(actualScreensDir, actualLogoValue)
+                .compareScreenshots(actualLogoValue, expectedLogoValue, logoComparisonResultValue);
+        assertEquals(ImageComparisonState.MATCH, imageComparisonResult.getImageComparisonState());
+
+        logger.info("ШАГ2 - Проверяем на скриншоте верстку содержимого заглавной станицы");
+        imageComparisonResult = titlePage
+//                .saveContentPageScreenshot(expectedScreensDir, expectedContentValue)
+                .saveContentPageScreenshot(actualScreensDir, actualContentValue)
+                .compareScreenshots(actualContentValue, expectedContentValue, contentComparisonResultValue);
         assertEquals(ImageComparisonState.MATCH, imageComparisonResult.getImageComparisonState());
     }
 }

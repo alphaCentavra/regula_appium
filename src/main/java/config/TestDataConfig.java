@@ -18,15 +18,27 @@ public interface TestDataConfig extends Config {
     @Key("folderWithComparisonScreenshots")
     String folderWithComparisonScreenshots();
 
-    @Key("waitTime")
-    int waitTime();
+    @Key("defaultWaitTimeInSeconds")
+    int defaultWaitTimeInSeconds();
 
-    @Key("expectedValue")
-    String expectedValue();
+    @Key("customWaitTimeInSeconds")
+    int customWaitTimeInSeconds();
 
-    @Key("actualValue")
-    String actualValue();
+    @Key("expectedContentValue")
+    String expectedContentValue();
 
-    @Key("imageComparisonResultValue")
-    String imageComparisonResultValue();
+    @Key("actualContentValue")
+    String actualContentValue();
+
+    @Key("contentComparisonResultValue")
+    String contentComparisonResultValue();
+
+    @Key("expectedLogoValue")
+    String expectedLogoValue();
+
+    @Key("actualLogoValue")
+    String actualLogoValue();
+
+    @Key("logoComparisonResultValue")
+    String logoComparisonResultValue();
 }

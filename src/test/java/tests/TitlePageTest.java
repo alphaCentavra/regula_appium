@@ -34,12 +34,11 @@ public class TitlePageTest extends BaseTest {
                 "Сценарий обработки для получения данных из визуальной зоны");
 
         logger.info("Проверяем видимость основных элементов заглавной страницы");
-        titlePage.waitPageContentDisplayed();
         var softAssert = new SoftAssert();
         softAssert.assertTrue(titlePage.isPageLogoDisplayed(), "НE отображается логотип заглавной страницы");
         texts.forEach( text -> softAssert.assertTrue(titlePage.isScenarioGridElementDisplayed(text),
                 "В таблице сценариев НЕ отображается элемент с тектом: " + text));
-        softAssert.assertTrue(titlePage.checkAllScenarioGridIconsAreDisplayed(),
+        softAssert.assertTrue(titlePage.areAllScenarioGridIconsDisplayed(),
                 "В таблице результатов НЕ отображается часть иконок");
         softAssert.assertTrue(titlePage.isCameraButtonDisplayed(),
                 "НЕ отображается кнопка камеры внизу страницы");
