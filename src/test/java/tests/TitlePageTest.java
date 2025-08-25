@@ -18,9 +18,9 @@ public class TitlePageTest extends BaseTest {
 
     @Test
     @AllureId("1")
-    @Description("Проверяем, что основные элементы отображаются на заглавной странице")
+    @Description("Проверяем, что отображаются все основные элементы заглавной страницы")
     @Severity(SeverityLevel.CRITICAL)
-    public void testUserMainTitlePageElements() {
+    public void testMainTitlePageElementsAreDisplayed() {
         // тестовые данные
         List<String> texts = List.of("Полная обработка",
                 "Сценарий обработки для получения всех возможных данных документа",

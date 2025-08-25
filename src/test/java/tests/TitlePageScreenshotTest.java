@@ -20,7 +20,7 @@ public class TitlePageScreenshotTest extends BaseTest {
 
     @Test
     @AllureId("2")
-    @Description("Проверяем верстку заглавной станицы")
+    @Description("Проверяем верстку заглавной страницы")
     @Severity(SeverityLevel.NORMAL)
     public void testTitlePageLayout() {
         // тестовые данные
